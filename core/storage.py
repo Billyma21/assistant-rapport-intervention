@@ -69,7 +69,7 @@ def initialiser():
 
 
 def journaliser_llm(entree):
-    """Trace un appel externe au modele de langage."""
+    """Trace un appel externe d'extraction distante."""
     entree = dict(entree)
     entree.setdefault("cree_le", datetime.now().isoformat(timespec="seconds"))
     with connexion() as cnx:

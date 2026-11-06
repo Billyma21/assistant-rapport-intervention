@@ -283,7 +283,7 @@ def extraire_par_regles(note):
 
 
 # --------------------------------------------------------------------------
-# Moteur LLM optionnel
+# Complement d'extraction distant (optionnel)
 # --------------------------------------------------------------------------
 
 CLES_SCHEMA = (
@@ -396,7 +396,7 @@ def _journaliser_appel(config, duree_ms, succes, moteur, detail):
 
 
 def extraire_par_llm(note, config):
-    """Appelle un modele de langage si la configuration l'autorise explicitement.
+    """Appelle un service d'extraction distant si la configuration l'autorise.
 
     Renvoie (donnees|None, message). En cas d'echec ou d'ecart de schema,
     donnees est None et le moteur de regles doit faire foi.
