@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Configuration locale (peut contenir secrets SMTP / clé API)
+config.json
+
+# Base SQLite locale
+data/*.db
+data/*.db-*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Prompts internes de développement (hors produit)
+PROMPT_CURSOR*.md

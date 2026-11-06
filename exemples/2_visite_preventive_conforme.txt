@@ -1,0 +1,5 @@
+Visite periodique trimestrielle du balisage bord de piste.
+Controle visuel de l'ensemble des feux, nettoyage des optiques, resserrage des
+connexions sur les boitiers. Courant mesure 6,60 A, conforme au nominal.
+Aucun feu hors service. Isolement 240 MOhm.
+Duree 5 heures. Rien a signaler, prochaine visite au contrat.

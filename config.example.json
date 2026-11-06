@@ -1,0 +1,71 @@
+{
+  "organisation": "A renseigner dans config.json",
+
+  "seuils": {
+    "defaut": {
+      "isolement_mohm": 50,
+      "courant_nominal_a": 6.6,
+      "courant_tolerance_a": 0.15,
+      "feux_hs_alerte": 5,
+      "recurrence_12m": 3
+    },
+    "par_systeme": {
+      "toucher des roues": { "feux_hs_alerte": 3 },
+      "axe de piste":      { "feux_hs_alerte": 4 },
+      "barres d'arret":    { "feux_hs_alerte": 2 },
+      "PAPI":              { "feux_hs_alerte": 1 },
+      "obstacles":         { "feux_hs_alerte": 1 }
+    }
+  },
+
+  "notifications": {
+    "niveau_minimum": "vigilance",
+
+    "push": {
+      "actif": false,
+      "serveur": "https://ntfy.sh",
+      "topic": "jdc-alertes-A-REMPLACER-PAR-UN-NOM-UNIQUE"
+    },
+
+    "courriel": {
+      "actif": false,
+      "hote": "smtp.gmail.com",
+      "port": 465,
+      "ssl": true,
+      "utilisateur": "votre.adresse@gmail.com",
+      "mot_de_passe": "mot de passe d application, pas le mot de passe du compte",
+      "expediteur": "votre.adresse@gmail.com",
+      "destinataires": ["votre.adresse@gmail.com"]
+    }
+  },
+
+  "llm": {
+    "api_key": "",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "model": "claude-sonnet-4-5",
+    "timeout": 20,
+    "autoriser_envoi": false
+  },
+
+  "risque": {
+    "ponderations": {
+      "isolement": 30,
+      "feux_hs": 20,
+      "correctives": 20,
+      "anciennete": 15,
+      "pente": 15
+    },
+    "periodicite_jours": {
+      "visuel": 30,
+      "isolement": 182,
+      "electrique": 365,
+      "photometrie": 365,
+      "defaut": 90
+    },
+    "projection": {
+      "_commentaire": "pente_significative_mohm_j a confirmer avec l'exploitant (MΩ/jour).",
+      "pente_significative_mohm_j": -0.02,
+      "horizon_max_mois": 24
+    }
+  }
+}

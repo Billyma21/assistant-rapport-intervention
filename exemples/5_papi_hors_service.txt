@@ -1,0 +1,5 @@
+Appel de l'exploitant : un PAPI hors service cote sud.
+Deplacement immediat. Un feu HS sur la rampe PAPI.
+Lampe remplacee, verification de l'alignement, controle du courant : 6,58 A.
+Circuit consigne pendant l'intervention, habilitation BR.
+Duree 2h, intervention de nuit.

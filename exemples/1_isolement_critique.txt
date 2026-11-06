@@ -1,0 +1,7 @@
+Intervention de nuit du 04/11, creneau 22h a 02h, hors trafic.
+Circuit consigne avant travaux, habilitation B2V.
+Mesure d'isolement sur la boucle TDZ : 38 MOhm. Courant releve 6,52 A au regulateur.
+Sept feux hors service sur la zone de toucher des roues.
+Constat : baisse d'isolement continue depuis deux campagnes, suspicion d'infiltration
+sur la portion est. Degradation visible sur deux boitiers de derivation.
+Optiques a commander et recherche de defaut a planifier avant la prochaine visite.

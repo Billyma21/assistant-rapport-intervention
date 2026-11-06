@@ -1,0 +1,7 @@
+Depannage urgent sur les barres d'arret aux points d'attente.
+Six feux hors service signales par la tour. Circuit consigne, habilitation BR.
+Defaut d'alimentation sur un troncon, reprise d'un raccordement noye.
+C'est la troisieme intervention sur ce meme circuit depuis le debut de l'annee.
+Isolement mesure apres reparation : 61 MOhm.
+A surveiller, une recherche de defaut complete serait a prevoir.
+Duree 3h.

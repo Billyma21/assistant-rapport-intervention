@@ -1,0 +1,7 @@
+Controle electrique annuel des armoires et regulateurs.
+Verification des alimentations, des onduleurs, des parafoudres et des coffrets
+de commande. Continuite des circuits verifiee.
+Courant de sortie 6,61 A sur le regulateur de l'axe de piste.
+Deux feux hors service releves sur l'axe.
+Isolement 180 MOhm. Habilitation B2V, intervention de jour.
+Remplacement des deux optiques a prevoir lors du prochain passage.
