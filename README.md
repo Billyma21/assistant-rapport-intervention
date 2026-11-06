@@ -7,7 +7,7 @@
 
 Application web locale qui transforme une **note de terrain libre** en
 **rapport d'intervention structuré**, applique des **seuils paramétrables** et
-déclenche des **alertes motivées** — conçue pour la maintenance du balisage
+déclenche des **alertes motivées** - conçue pour la maintenance du balisage
 lumineux aéronautique (AGL).
 
 > **Auteur :** MAAYOUD.B ([@Billyma21](https://github.com/Billyma21))  
@@ -32,20 +32,20 @@ bonnes cases, et remarque, parfois, qu'une valeur était anormale.
 |---|---|
 | **Extraction** | Moteur de règles déterministe ; complément d'extraction distant optionnel |
 | **Criticité** | Seuils par système, récurrence 12 mois, motifs stables et opposables |
-| **Pilotage** | Tableau de bord, fiches circuit / site, score de risque 0–100 expliqué |
+| **Pilotage** | Tableau de bord, fiches circuit / site, score de risque 0-100 expliqué |
 | **Tendance** | Projection d'isolement (régression linéaire, garde-fous métier) |
 | **Sorties** | Export CSV / JSON, charge ERP (`/odoo.json`), impression signée, résumé hebdo |
 | **Alertes** | Journal interne permanent ; push ntfy et courriel SMTP optionnels |
 
 ## Décisions d'architecture
 
-1. **Aucune dépendance externe** — bibliothèque standard Python uniquement.
+1. **Aucune dépendance externe** - bibliothèque standard Python uniquement.
    Démarre sur n'importe quel poste, y compris hors réseau.
-2. **Hors ligne par défaut** — aucune fonctionnalité essentielle ne dépend d'Internet.
-3. **Déterminisme** — pour une même note et une même config, le moteur de règles
+2. **Hors ligne par défaut** - aucune fonctionnalité essentielle ne dépend d'Internet.
+3. **Déterminisme** - pour une même note et une même config, le moteur de règles
    rend exactement le même résultat.
-4. **Aucun seuil réglementaire en dur** — tout est dans `config.json`.
-5. **Extraction distante optionnelle** — le verdict reste celui des règles ;
+4. **Aucun seuil réglementaire en dur** - tout est dans `config.json`.
+5. **Extraction distante optionnelle** - le verdict reste celui des règles ;
    aucune donnée n'est envoyée sans `autoriser_envoi: true`.
 
 ## Prérequis
@@ -94,7 +94,7 @@ assistant-rapport-intervention/
 ├── core/
 │   ├── extraction.py      Moteur de règles (+ complément distant optionnel)
 │   ├── seuils.py          Verdict et motifs
-│   ├── risque.py          Score 0–100 + projection
+│   ├── risque.py          Score 0-100 + projection
 │   ├── export.py          CSV, JSON, charge Odoo
 │   ├── notify.py          Push, courriel, journal
 │   └── storage.py         SQLite
@@ -207,7 +207,7 @@ Voir [MANUEL.md](MANUEL.md) pour le mode d'emploi terrain / bureau.
 |---|---|
 | **Auteur** | **MAAYOUD.B** ([@Billyma21](https://github.com/Billyma21)) |
 | **Copyright** | © 2026 MAAYOUD.B. Tous droits réservés quant à l'attribution. |
-| **Licence** | [MIT](LICENSE) — libre d'usage, de modification et de redistribution, sous réserve du maintien de l'avis de copyright. |
+| **Licence** | [MIT](LICENSE) - libre d'usage, de modification et de redistribution, sous réserve du maintien de l'avis de copyright. |
 
 ```
 Copyright (c) 2026 MAAYOUD.B

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Assistant de rapport d'intervention — serveur HTTP.
+"""Assistant de rapport d'intervention - serveur HTTP.
 
 Copyright (c) 2026 MAAYOUD.B. Licence MIT.
 
@@ -135,7 +135,7 @@ def _tableau_de_bord():
             if der.get("isolement_mohm") is not None:
                 points = [(der.get("date"), der["isolement_mohm"], der.get("niveau"))]
         courbe_html = (
-            '<p class="muted" style="margin:0 0 6px">%s — score %d</p>%s%s' % (
+            '<p class="muted" style="margin:0 0 6px">%s - score %d</p>%s%s' % (
                 views.e(pire["circuit"]), pire["score"],
                 views.courbe_isolement_svg(points, seuil=seuil, largeur=520, hauteur=180),
                 views.bloc_projection(pire.get("projection") or {}))

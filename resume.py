@@ -91,7 +91,7 @@ def construire_resume(config, aujourd_hui=None):
     top3 = scores[:3]
 
     lignes = [
-        "Resume hebdomadaire — %s au %s" % (debut_iso, fin_iso),
+        "Resume hebdomadaire - %s au %s" % (debut_iso, fin_iso),
         "=" * 56,
         "",
         "Interventions realisees : %d" % len(interventions),
@@ -119,7 +119,7 @@ def construire_resume(config, aujourd_hui=None):
     for s in top3:
         site = (s.get("dernier") or {}).get("site") or "?"
         lignes.append(
-            "  - %s (score %d, %s) — %s" % (
+            "  - %s (score %d, %s) - %s" % (
                 s["circuit"], s["score"], site, s["motif_dominant"]))
 
     lignes += ["", "Genere le %s." % datetime.now().isoformat(timespec="seconds")]

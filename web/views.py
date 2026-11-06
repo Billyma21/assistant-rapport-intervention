@@ -134,13 +134,13 @@ def pill(niveau):
 
 def lien_circuit(circuit):
     if not circuit:
-        return "—"
+        return "-"
     return '<a href="/circuit/%s">%s</a>' % (quote(str(circuit), safe=""), e(circuit))
 
 
 def lien_site(site):
     if not site:
-        return "—"
+        return "-"
     return '<a href="/site/%s">%s</a>' % (quote(str(site), safe=""), e(site))
 
 
@@ -297,7 +297,7 @@ def accueil(kpis, priorites, courbe_html, derniers):
     {lignes_prio}</table>
   </div>
   <div class="card">
-    <h2>Isolement — circuit le plus dégradé</h2>
+    <h2>Isolement - circuit le plus dégradé</h2>
     {courbe_html}
   </div>
 </div>
@@ -333,7 +333,7 @@ L'analyse en extrait les valeurs et les range dans les rubriques du rapport.</p>
     <button type="submit">Analyser la note</button>
     <span class="muted">ou charger un exemple :</span>
     <select name="exemple" onchange="if(this.value) location.href='/nouveau?exemple='+encodeURIComponent(this.value)">
-      <option value="">—</option>{options}</select>
+      <option value="">-</option>{options}</select>
   </div>
 </form>""", "/nouveau")
 
@@ -400,7 +400,7 @@ def analyse(donnees, verdict, contexte, notifie, llm_disponible=False):
     motifs = "".join("<li>%s</li>" % e(m) for m in verdict["motifs"])
     bandeau = f"""<div class="bandeau b-{e(verdict['niveau'])}">
 <strong>{ {'critique':'Alerte critique','vigilance':'Point de vigilance','info':'Aucun écart détecté'}[verdict['niveau']] }</strong>
- — {'une notification sera envoyée à la validation' if notifie else 'pas de notification à ce niveau'}.
+ - {'une notification sera envoyée à la validation' if notifie else 'pas de notification à ce niveau'}.
 </div>"""
     etiquettes = "".join('<span class="tag">%s</span>' % e(t) for t in [
         "moteur : " + (donnees.get("moteur") or "regles"),
@@ -436,11 +436,11 @@ def _tableau_extraction(donnees, ecarts_champs, titre):
         "travaux", "constat", "suite",
     ):
         css = ' class="ecart"' if cle in ecarts_champs else ""
-        val = donnees.get(cle) if donnees else "—"
+        val = donnees.get(cle) if donnees else "-"
         if isinstance(val, bool):
             val = "oui" if val else "non"
         elif val is None:
-            val = "—"
+            val = "-"
         lignes.append("<tr%s><th>%s</th><td>%s</td></tr>" % (css, e(cle), e(val)))
     return (
         '<div class="card" style="margin:0"><h2 style="margin-top:0">%s</h2>'
@@ -457,7 +457,7 @@ def comparaison(regles, llm, ecarts, verdict, contexte, notifie, message=None):
             '<div class="bandeau b-vigilance">%s</div>' % e(message))
     elif llm:
         bandeau_msg = (
-            '<div class="bandeau b-info">Comparaison effectuée — '
+            '<div class="bandeau b-info">Comparaison effectuée - '
             '%d écart(s) surligné(s). Le verdict et le formulaire restent '
             'ceux du moteur de règles.</div>' % len(ecarts))
     liste_ecarts = "".join(
@@ -489,13 +489,13 @@ def rapport_page(r, alerte=None, date_edition=None):
     motifs = json.loads(r["motifs"]) if r.get("motifs") else []
     lignes = "".join("<li>%s</li>" % e(m) for m in motifs)
     mesures = "".join(f"<tr><th>{l}</th><td class='mono'>{e(v)}</td></tr>" for l, v in [
-        ("Courant mesuré", "%s A" % r["courant_a"] if r["courant_a"] is not None else "—"),
-        ("Isolement", "%s MΩ" % r["isolement_mohm"] if r["isolement_mohm"] is not None else "—"),
-        ("Feux hors service", r["feux_hs"] if r["feux_hs"] is not None else "—"),
-        ("Durée", "%s h" % r["duree_h"] if r["duree_h"] is not None else "—"),
+        ("Courant mesuré", "%s A" % r["courant_a"] if r["courant_a"] is not None else "-"),
+        ("Isolement", "%s MΩ" % r["isolement_mohm"] if r["isolement_mohm"] is not None else "-"),
+        ("Feux hors service", r["feux_hs"] if r["feux_hs"] is not None else "-"),
+        ("Durée", "%s h" % r["duree_h"] if r["duree_h"] is not None else "-"),
         ("Travail de nuit", "oui" if r["travail_de_nuit"] else "non"),
         ("Consignation", "oui" if r["consignation"] else "non mentionnée"),
-        ("Habilitation", r["habilitation"] or "—"),
+        ("Habilitation", r["habilitation"] or "-"),
     ])
     edition = date_edition or date.today().isoformat()
     bloc_alerte = ""
@@ -512,7 +512,7 @@ def rapport_page(r, alerte=None, date_edition=None):
   <a class="btn sec" href="/rapport/{r['id']}/odoo.json">Export Odoo</a>
   <a class="btn sec" href="/rapports">Retour</a></div>
 </div>
-<h1 class="impression-seulement">Rapport {e(r['reference'])} — {pill(r['niveau'])}</h1>
+<h1 class="impression-seulement">Rapport {e(r['reference'])} - {pill(r['niveau'])}</h1>
 <div class="card">
   <table>
     <tr><th>Site</th><td>{lien_site(r['site'])}</td>
@@ -521,9 +521,9 @@ def rapport_page(r, alerte=None, date_edition=None):
     <tr><th>Système</th><td>{e(r['systeme'])}</td><th>Nature</th><td>{e(r['nature'])}</td></tr>
   </table>
   <h2>Valeurs relevées</h2><table>{mesures}</table>
-  <h2>Travaux réalisés</h2><p>{e(r['travaux']) or '—'}</p>
-  <h2>Constat et anomalies</h2><p>{e(r['constat']) or '—'}</p>
-  <h2>Suite à donner</h2><p>{e(r['suite']) or '—'}</p>
+  <h2>Travaux réalisés</h2><p>{e(r['travaux']) or '-'}</p>
+  <h2>Constat et anomalies</h2><p>{e(r['constat']) or '-'}</p>
+  <h2>Suite à donner</h2><p>{e(r['suite']) or '-'}</p>
   <h2>Évaluation</h2><ul class="motifs">{lignes}</ul>
   <p class="muted" style="margin-top:22px">Extraction : {e(r['moteur'])}.
   Les seuils appliqués sont ceux paramétrés dans la configuration.</p>
@@ -534,7 +534,7 @@ def rapport_page(r, alerte=None, date_edition=None):
       <p class="muted">Nom / date</p></div>
   </div>
   <div class="pied-impression impression-seulement">
-    Référence {e(r['reference'])} — Édité le {e(edition)}
+    Référence {e(r['reference'])} - Édité le {e(edition)}
   </div>
 </div>
 {bloc_alerte}
@@ -554,7 +554,7 @@ def liste_rapports(rapports):
 <p class="lede">Historique complet des interventions saisies.
   <a href="/export.csv">Export CSV</a> ·
   <a href="/export.json">Export JSON</a>
-  — filtrable via <span class="mono">?site=&amp;circuit=&amp;debut=&amp;fin=</span></p>
+  - filtrable via <span class="mono">?site=&amp;circuit=&amp;debut=&amp;fin=</span></p>
 <div class="card"><table><tr><th>Réf.</th><th>Date</th><th>Site</th><th>Circuit</th>
 <th>Système</th><th>Nature</th><th>MΩ</th><th>Feux HS</th><th>Niveau</th><th></th></tr>
 {lignes}</table></div>""", "/rapports")
@@ -563,7 +563,7 @@ def liste_rapports(rapports):
 def liste_alertes(alertes):
     blocs = "".join(f"""<div class="card"><div class="row" style="justify-content:space-between">
 <strong>{e(a['titre'])}</strong><span>{pill(a['niveau'])}</span></div>
-<p class="muted">{e(a['cree_le'])} — canaux : {e(a['canaux'])}</p>
+<p class="muted">{e(a['cree_le'])} - canaux : {e(a['canaux'])}</p>
 <pre>{e(a['corps'])}</pre></div>""" for a in alertes) or \
         '<div class="card muted">Aucune alerte émise pour le moment.</div>'
     return page("Alertes", f"""
@@ -607,22 +607,22 @@ def bloc_projection(projection):
         return ""
     return (
         '<div class="bandeau b-vigilance" style="margin-top:12px;margin-bottom:0">'
-        '<strong>Tendance</strong> — %s</div>' % e(projection["phrase"])
+        '<strong>Tendance</strong> - %s</div>' % e(projection["phrase"])
     )
 
 
 def circuit_page(meta, score, rapports, courbe_html, seuil_iso):
     """Fiche circuit : identification, etat, correctives, historique, courbe."""
     dernier = score.get("dernier") or (rapports[0] if rapports else None)
-    designation = (meta or {}).get("designation") or (dernier or {}).get("systeme") or "—"
-    site = (meta or {}).get("site") or (dernier or {}).get("site") or "—"
-    regulateur = (meta or {}).get("regulateur") or "—"
+    designation = (meta or {}).get("designation") or (dernier or {}).get("systeme") or "-"
+    site = (meta or {}).get("site") or (dernier or {}).get("site") or "-"
+    regulateur = (meta or {}).get("regulateur") or "-"
     puissance = (meta or {}).get("puissance_kva")
     feux = (meta or {}).get("feux")
-    circuit = score.get("circuit") or (dernier or {}).get("circuit") or "—"
+    circuit = score.get("circuit") or (dernier or {}).get("circuit") or "-"
     projection = score.get("projection") or {}
 
-    etat = "—"
+    etat = "-"
     if dernier:
         parts = []
         if dernier.get("isolement_mohm") is not None:
@@ -631,10 +631,10 @@ def circuit_page(meta, score, rapports, courbe_html, seuil_iso):
             parts.append("%s A" % dernier["courant_a"])
         if dernier.get("feux_hs") is not None:
             parts.append("%s feux HS" % dernier["feux_hs"])
-        etat = " · ".join(parts) if parts else "—"
+        etat = " · ".join(parts) if parts else "-"
 
     detail = "".join(
-        "<li><strong>+%.1f</strong> — %s</li>" % (d["points"], e(d["texte"]))
+        "<li><strong>+%.1f</strong> - %s</li>" % (d["points"], e(d["texte"]))
         for d in score.get("detail") or []
     )
 
@@ -643,8 +643,8 @@ def circuit_page(meta, score, rapports, courbe_html, seuil_iso):
         '<td class="mono">%s</td><td class="mono">%s</td><td>%s</td>'
         '<td><a href="/rapport/%s">ouvrir</a></td></tr>' % (
             e(r["date"]), e(r["reference"]), e(r["nature"]), e(r["controle"]),
-            e(r["isolement_mohm"] if r["isolement_mohm"] is not None else "—"),
-            e(r["feux_hs"] if r["feux_hs"] is not None else "—"),
+            e(r["isolement_mohm"] if r["isolement_mohm"] is not None else "-"),
+            e(r["feux_hs"] if r["feux_hs"] is not None else "-"),
             pill(r["niveau"]), r["id"],
         ) for r in rapports
     ) or '<tr><td colspan="8" class="muted">Aucun rapport pour ce circuit.</td></tr>'
@@ -653,7 +653,7 @@ def circuit_page(meta, score, rapports, courbe_html, seuil_iso):
 <div class="row" style="justify-content:space-between;align-items:baseline">
   <div>
     <h1>Circuit {e(circuit)}</h1>
-    <p class="lede" style="margin:0">{e(designation)} — {lien_site(site)}</p>
+    <p class="lede" style="margin:0">{e(designation)} - {lien_site(site)}</p>
   </div>
   <div class="row">
     <span class="score {classe_score(score.get('score', 0))}" style="font-size:28px">
@@ -665,13 +665,13 @@ def circuit_page(meta, score, rapports, courbe_html, seuil_iso):
   <div class="kpi"><div class="l">État courant</div>
     <div class="v" style="font-size:18px">{e(etat)}</div>
     <div class="muted">{pill((dernier or {}).get('niveau') or 'info')}
-      — {e((dernier or {}).get('date') or '')}</div></div>
+      - {e((dernier or {}).get('date') or '')}</div></div>
   <div class="kpi"><div class="l">Correctives 12 mois</div>
     <div class="v">{score.get('correctives_12m', 0)}</div></div>
   <div class="kpi"><div class="l">Identification</div>
     <div class="muted">Régulateur <span class="mono">{e(regulateur)}</span>
-    · {e(puissance) + ' kVA' if puissance is not None else '—'}
-    · {e(feux) + ' feux' if feux is not None else '—'}</div>
+    · {e(puissance) + ' kVA' if puissance is not None else '-'}
+    · {e(feux) + ' feux' if feux is not None else '-'}</div>
     <div class="muted">Seuil isolement paramétré : {e(seuil_iso)} MΩ</div></div>
 </div>
 <div class="card">
@@ -694,7 +694,7 @@ def sites_page(lignes_sites):
         '<tr><td>%s</td><td class="mono">%d</td><td class="mono">%d</td>'
         '<td class="mono">%d</td><td>%s</td></tr>' % (
             lien_site(s["site"]), s["nb_circuits"], s["feux_hs"], s["en_alerte"],
-            e(s["derniere"] or "—"),
+            e(s["derniere"] or "-"),
         ) for s in lignes_sites
     ) or '<tr><td colspan="5" class="muted">Aucun site.</td></tr>'
     return page("Sites", f"""
@@ -712,7 +712,7 @@ def site_page(nom, circuits_scores, rapports):
         '<tr><td>%s</td><td class="mono">%s</td><td><span class="score %s">%d</span></td>'
         '<td>%s</td><td class="muted">%s</td></tr>' % (
             lien_circuit(c["circuit"]),
-            e((c.get("dernier") or {}).get("systeme") or "—"),
+            e((c.get("dernier") or {}).get("systeme") or "-"),
             classe_score(c["score"]), c["score"],
             pill((c.get("dernier") or {}).get("niveau") or "info"),
             e(c["motif_dominant"]),
