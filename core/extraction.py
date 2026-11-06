@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 """Extraction structuree d'une note de terrain.
 
+Copyright (c) 2026 MAAYOUD.B. Licence MIT.
+
 Deux moteurs :
   1. un moteur de regles, toujours disponible, sans reseau ni cle d'API ;
-  2. un moteur LLM optionnel, active seulement si une cle est configuree.
+  2. un complement d'extraction distant optionnel, active seulement si
+     autorise explicitement dans la configuration.
 
-Le moteur LLM ne remplace jamais le moteur de regles : il le complete, et
-toute erreur retombe silencieusement sur les regles. Un processus
+Le complement distant ne remplace jamais le moteur de regles : il le complete,
+et toute erreur retombe silencieusement sur les regles. Un processus
 d'exploitation ne doit pas dependre de la disponibilite d'une API externe.
 """
 

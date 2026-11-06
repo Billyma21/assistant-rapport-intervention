@@ -10,8 +10,9 @@ Application web locale qui transforme une **note de terrain libre** en
 déclenche des **alertes motivées** — conçue pour la maintenance du balisage
 lumineux aéronautique (AGL).
 
-> **Auteur :** [B.M](https://github.com/Billyma21) ([@Billyma21](https://github.com/Billyma21))  
-> **Copyright © 2026 B.M (Billyma21).** Publié sous licence [MIT](LICENSE).
+> **Auteur :** MAAYOUD.B ([@Billyma21](https://github.com/Billyma21))  
+> **Copyright © 2026 MAAYOUD.B.** Tous droits réservés quant à l'attribution.  
+> Publié sous licence [MIT](LICENSE).
 
 ---
 
@@ -29,7 +30,7 @@ bonnes cases, et remarque, parfois, qu'une valeur était anormale.
 
 | Domaine | Capacités |
 |---|---|
-| **Extraction** | Moteur de règles déterministe ; LLM optionnel (comparaison côte à côte) |
+| **Extraction** | Moteur de règles déterministe ; complément d'extraction distant optionnel |
 | **Criticité** | Seuils par système, récurrence 12 mois, motifs stables et opposables |
 | **Pilotage** | Tableau de bord, fiches circuit / site, score de risque 0–100 expliqué |
 | **Tendance** | Projection d'isolement (régression linéaire, garde-fous métier) |
@@ -44,8 +45,8 @@ bonnes cases, et remarque, parfois, qu'une valeur était anormale.
 3. **Déterminisme** — pour une même note et une même config, le moteur de règles
    rend exactement le même résultat.
 4. **Aucun seuil réglementaire en dur** — tout est dans `config.json`.
-5. **L'IA est optionnelle** — le verdict reste celui des règles ; aucune donnée
-   n'est envoyée sans `autoriser_envoi: true`.
+5. **Extraction distante optionnelle** — le verdict reste celui des règles ;
+   aucune donnée n'est envoyée sans `autoriser_envoi: true`.
 
 ## Prérequis
 
@@ -88,10 +89,10 @@ assistant-rapport-intervention/
 ├── app.py                 Serveur HTTP et routage
 ├── historique.py          Parc de démonstration déterministe
 ├── resume.py              Résumé hebdomadaire
-├── config.example.json    Seuils, notifications, LLM, risque
+├── config.example.json    Seuils, notifications, extraction distante, risque
 ├── demarrer.bat / .sh
 ├── core/
-│   ├── extraction.py      Règles + LLM optionnel
+│   ├── extraction.py      Moteur de règles (+ complément distant optionnel)
 │   ├── seuils.py          Verdict et motifs
 │   ├── risque.py          Score 0–100 + projection
 │   ├── export.py          CSV, JSON, charge Odoo
@@ -134,7 +135,7 @@ Les valeurs livrées sont des **exemples** à confirmer avec l'exploitant.
 - **Push** (ntfy) et **courriel** (SMTP) : désactivés par défaut.
 - Le **journal interne** enregistre toujours les alertes, même hors ligne.
 
-### Modèle de langage (optionnel)
+### Complément d'extraction distant (optionnel)
 
 ```json
 "llm": {
@@ -147,7 +148,7 @@ Les valeurs livrées sont des **exemples** à confirmer avec l'exploitant.
 ```
 
 Sans clé **ou** sans `autoriser_envoi: true`, aucune note n'est envoyée.
-Sur la page d'analyse : bouton « Comparer avec le modèle de langage ».
+Sur la page d'analyse : bouton « Comparer avec l'extraction distante ».
 
 ## Principales routes
 
@@ -204,12 +205,12 @@ Voir [MANUEL.md](MANUEL.md) pour le mode d'emploi terrain / bureau.
 
 | | |
 |---|---|
-| **Auteur** | B.M ([@Billyma21](https://github.com/Billyma21)) |
-| **Copyright** | © 2026 B.M (Billyma21). Tous droits réservés quant à l'attribution. |
+| **Auteur** | **MAAYOUD.B** ([@Billyma21](https://github.com/Billyma21)) |
+| **Copyright** | © 2026 MAAYOUD.B. Tous droits réservés quant à l'attribution. |
 | **Licence** | [MIT](LICENSE) — libre d'usage, de modification et de redistribution, sous réserve du maintien de l'avis de copyright. |
 
 ```
-Copyright (c) 2026 B.M (Billyma21)
+Copyright (c) 2026 MAAYOUD.B
 ```
 
 Contributions et retours : ouvrir une *issue* ou une *pull request* sur ce dépôt.

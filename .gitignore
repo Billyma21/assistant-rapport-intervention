@@ -21,5 +21,6 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Prompts internes de développement (hors produit)
-PROMPT_CURSOR*.md
+# Fichiers de travail locaux hors produit
+PROMPT_*.md
+*.local.md

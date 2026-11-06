@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """Assistant de rapport d'intervention — serveur HTTP.
 
+Copyright (c) 2026 MAAYOUD.B. Licence MIT.
+
 Bibliotheque standard uniquement : aucune installation, aucune dependance,
 aucun acces reseau necessaire pour fonctionner.
 
@@ -394,8 +396,8 @@ def main():
     print("=" * 62)
     print("  Configuration : %s" % (source or "aucune, valeurs par defaut"))
     print("  Extraction    : regles%s" % (
-        " + LLM autorise" if extraction.llm_autorise(CONFIG)
-        else " (LLM inactif — cle ou autoriser_envoi)"))
+        " + complement distant autorise" if extraction.llm_autorise(CONFIG)
+        else " (complement distant inactif)"))
     print("  Notification  : push %s, courriel %s" % (
         "actif" if push.get("actif") else "inactif",
         "actif" if mail.get("actif") else "inactif"))

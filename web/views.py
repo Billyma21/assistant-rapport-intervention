@@ -413,7 +413,7 @@ def analyse(donnees, verdict, contexte, notifie, llm_disponible=False):
         bouton_llm = f"""
 <form method="post" action="/comparer" class="noprint" style="display:inline">
   {_champs_caches_contexte(contexte, donnees, verdict)}
-  <button type="submit" class="btn sec">Comparer avec le modèle de langage</button>
+  <button type="submit" class="btn sec">Comparer avec l'extraction distante</button>
 </form>"""
     return page("Analyse", f"""
 <h1>Analyse de la note</h1>
@@ -449,7 +449,7 @@ def _tableau_extraction(donnees, ecarts_champs, titre):
 
 
 def comparaison(regles, llm, ecarts, verdict, contexte, notifie, message=None):
-    """Vue cote a cote regles / LLM ; le formulaire de validation reste sur les regles."""
+    """Vue cote a cote regles / extraction distante ; validation = regles."""
     champs_ecart = {x["champ"] for x in ecarts}
     bandeau_msg = ""
     if message:
@@ -462,7 +462,7 @@ def comparaison(regles, llm, ecarts, verdict, contexte, notifie, message=None):
             'ceux du moteur de règles.</div>' % len(ecarts))
     liste_ecarts = "".join(
         "<li><strong>%s</strong> : règles = <span class='mono'>%s</span> · "
-        "LLM = <span class='mono'>%s</span></li>" % (
+        "distant = <span class='mono'>%s</span></li>" % (
             e(x["champ"]), e(x["regles"]), e(x["llm"]))
         for x in ecarts
     ) or "<li class='muted'>Aucun écart détecté.</li>"
@@ -474,7 +474,7 @@ verdict et alimente le formulaire de validation.</p>
 {bandeau_msg}
 <div class="comparaison">
   {_tableau_extraction(regles, champs_ecart, "Moteur de règles (décision)")}
-  {_tableau_extraction(llm, champs_ecart, "Modèle de langage" if llm else "Modèle de langage (indisponible)")}
+  {_tableau_extraction(llm, champs_ecart, "Extraction distante" if llm else "Extraction distante (indisponible)")}
 </div>
 <div class="card">
   <h2 style="margin-top:0">Écarts</h2>
@@ -581,7 +581,7 @@ def config_page(config, journal_llm=None):
             "ok" if j.get("succes") else "échec",
             e(j.get("moteur")), e(j.get("detail")),
         ) for j in journal_llm
-    ) or "<tr><td colspan='5' class='muted'>Aucun appel LLM journalisé.</td></tr>"
+    ) or "<tr><td colspan='5' class='muted'>Aucun appel distant journalisé.</td></tr>"
     return page("Seuils", f"""
 <h1>Seuils et notifications</h1>
 <p class="lede">Aucun seuil n'est codé en dur dans l'application. Ils sont
@@ -589,11 +589,11 @@ définis ici, par système de balisage, parce qu'une valeur réglementaire dépe
 du contrat et de l'exploitant.</p>
 <div class="card"><pre>{e(json.dumps(config, indent=2, ensure_ascii=False))}</pre>
 <p class="muted">Fichier <span class="mono">config.json</span> à la racine du
-projet. Redémarrer l'application après modification. Pour activer le modèle de
-langage : renseigner <span class="mono">api_key</span> et
+projet. Redémarrer l'application après modification. Pour activer l'extraction
+distante : renseigner <span class="mono">api_key</span> et
 <span class="mono">autoriser_envoi: true</span>.</p></div>
 <div class="card">
-  <h2 style="margin-top:0">Journal des appels au modèle</h2>
+  <h2 style="margin-top:0">Journal des appels distants</h2>
   <p class="muted">Horodatage, durée, succès/échec, moteur. Aucune note n'est
   envoyée sans autorisation explicite.</p>
   <table><tr><th>Horodatage</th><th>Durée</th><th>Résultat</th><th>Moteur</th>
